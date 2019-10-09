@@ -50,4 +50,8 @@ return id;
         Cursor cursor= sqLiteDatabase.rawQuery(Showall,null);
         return  cursor;
     }
+
+    public  void deletedata(int id){
+        getWritableDatabase().delete(TABLE_NAME,"Id=?",new String[]{String.valueOf(id)});
+    }
 }

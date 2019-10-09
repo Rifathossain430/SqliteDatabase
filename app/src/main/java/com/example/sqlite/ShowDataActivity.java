@@ -29,7 +29,7 @@ public class ShowDataActivity extends AppCompatActivity {
     private void init() {
         users= new ArrayList<>();
         recyclerView= findViewById(R.id.rv);
-        adapter = new UserAdapter(this,users);
+        adapter = new UserAdapter(this,users,helper);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         helper= new DatabaseHelper(this);
