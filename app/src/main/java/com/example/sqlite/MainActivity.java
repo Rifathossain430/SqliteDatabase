@@ -3,6 +3,7 @@ package com.example.sqlite;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -32,5 +33,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void showdata(View view) {
+        startActivity(new Intent(this,ShowDataActivity.class));
     }
 }

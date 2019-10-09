@@ -2,8 +2,10 @@ package com.example.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import androidx.annotation.Nullable;
 
@@ -40,5 +42,12 @@ sqLiteDatabase.close();
 return id;
 
 
+    }
+
+    public  Cursor showdata(){
+        String Showall = "SELECT * From "+TABLE_NAME;
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor= sqLiteDatabase.rawQuery(Showall,null);
+        return  cursor;
     }
 }

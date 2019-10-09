@@ -31,6 +31,16 @@
             android:text="Insert"
             android:textColor="#FFF">
 
+        </Button> <Button
+            android:id="@+id/showdataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:text="Show Data"
+        android:onClick="showdata"
+            android:textColor="#FFF">
+
         </Button>
 
     </LinearLayout>
