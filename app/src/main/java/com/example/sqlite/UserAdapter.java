@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sqlite.databinding.ItemUserBinding;
 
 import java.util.List;
 
@@ -28,16 +31,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user,parent,false);
+        ItemUserBinding binding= DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.item_user,parent,false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
        final User user= users.get(position);
-       holder.name.setText(user.getName());
-       holder.age.setText(user.getAge());
+       holder.binding.nameTV.setText(user.getName());
+       holder.binding.ageTV.setText(user.getAge());
        //this part for the delete data from sqlite database
        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
            @Override
@@ -59,11 +62,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name,age;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name= itemView.findViewById(R.id.nameTV);
-            age = itemView.findViewById(R.id.ageTV);
+        private  ItemUserBinding binding;
+        public ViewHolder(ItemUserBinding binding) {
+            super(binding.getRoot());
+           this.binding= binding;
         }
     }
 }
