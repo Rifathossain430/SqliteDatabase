@@ -6,18 +6,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
+import android.provider.SearchRecentSuggestions;
 
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static String DATABASE_NAME="User.db";
-    public static String TABLE_NAME="User";
-    public static String COL_ID="Id";
-    public static int VERSION=1;
-    public static String COL_NAME="Name";
-    public static String COL_AGE="Age";
-    public String create_table= "create table "+TABLE_NAME+"(Id integer primary key, Name text,Age text)";
+    public static String DATABASE_NAME = "User.db";
+    public static String TABLE_NAME = "User";
+    public static String COL_ID = "Id";
+    public static int VERSION = 1;
+    public static String COL_NAME = "Name";
+    public static String COL_AGE = "Age";
+    public String create_table = "create table " + TABLE_NAME + "(Id integer primary key, Name text,Age text)";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -32,26 +34,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    public  long insertData(String Name,String Age){
-        ContentValues contentValues= new ContentValues();
-        contentValues.put(COL_NAME,Name);
-contentValues.put(COL_AGE,Age);
-SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-long id= sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
-sqLiteDatabase.close();
-return id;
+
+    public long insertData(String Name, String Age) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_NAME, Name);
+        contentValues.put(COL_AGE, Age);
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        long id = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+        sqLiteDatabase.close();
+        return id;
 
 
     }
 
-    public  Cursor showdata(){
-        String Showall = "SELECT * From "+TABLE_NAME;
+    public Cursor showdata() {
+        String Showall = "SELECT * From " + TABLE_NAME;
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor= sqLiteDatabase.rawQuery(Showall,null);
-        return  cursor;
+        Cursor cursor = sqLiteDatabase.rawQuery(Showall, null);
+        return cursor;
     }
 
-    public  void deletedata(int id){
-        getWritableDatabase().delete(TABLE_NAME,"Id=?",new String[]{String.valueOf(id)});
+    public void deletedata(int id) {
+        getWritableDatabase().delete(TABLE_NAME, "Id=?", new String[]{String.valueOf(id)});
+    }
+
+    public void updateData(int id, String name, String age) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_ID, id);
+        contentValues.put(COL_NAME, name);
+        contentValues.put(COL_AGE, age);
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        sqLiteDatabase.update(TABLE_NAME, contentValues, "id=?", new String[]{String.valueOf(id)});
+        sqLiteDatabase.close();
+
     }
 }

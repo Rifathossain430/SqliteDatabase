@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -31,14 +32,27 @@
             android:text="Insert"
             android:textColor="#FFF">
 
-        </Button> <Button
+        </Button>
+
+        <Button
             android:id="@+id/showdataBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/colorPrimary"
+            android:onClick="showdata"
             android:text="Show Data"
-        android:onClick="showdata"
+            android:textColor="#FFF">
+
+        </Button>
+        <Button
+            android:id="@+id/updatedataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:onClick="updateData"
+            android:text="Update"
             android:textColor="#FFF">
 
         </Button>
